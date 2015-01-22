@@ -6,7 +6,7 @@ import model.domains.MazeGameDomain;
 import model.domains.SearchDomainFactory;
 import network.Client;
 
-/**  MyModel is a type of Observable and the Presentor is the Observer
+/**  MyModel is a type of Observable and the Presenter is the Observer
  *
  * @see {@link Model}
  * 

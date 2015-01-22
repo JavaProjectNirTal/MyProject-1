@@ -52,23 +52,13 @@ public class Presenter implements Observer {
 	}
 	
 	public void showSolutionInModel(int i) {						//presents the solution to the User
-		//System.out.println("s3");
-		if (!indexInRange(i)) {
-			
-			//System.out.println("s5");
-			((MyConsoleView) view).indexNotInRange(false);			//fix!!!!!!!!!!!!!!
-		}
-		else {
 			if (models.get(i-1).getSolution() != null) {
-				//System.out.println("s7");
 				view.displaySolution(models.get(i-1).getSolution());
 			}
 			else {
-				//System.out.println("s8");
 				view.solutionFoundOrNot(false);
 				
 			}
-		}
 	}
 	
 	public void exitSafetlyFromAllModels() {
