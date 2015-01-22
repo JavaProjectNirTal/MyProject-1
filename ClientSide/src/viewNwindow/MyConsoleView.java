@@ -92,10 +92,6 @@ public class MyConsoleView extends Observable implements View	 {
 		return action;
 	}
 
-	@Override
-	public void displayCurrentState() {
-		//in the future!!!
-	}
 
 	@Override
 	public void doTask() {

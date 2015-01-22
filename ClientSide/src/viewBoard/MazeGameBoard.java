@@ -3,7 +3,6 @@ package viewBoard;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -15,7 +14,7 @@ public class MazeGameBoard extends GameBoard {
 	private String mazeString;
 	private int[][] maze;
 	private int mazeSize;
-	private Image mazeBackround, imageStart, imageEnd;
+	private Image mazeBackround, imageEnd;
 	private GameCharacter character;
 
 	
@@ -28,8 +27,6 @@ public class MazeGameBoard extends GameBoard {
 		if (mazeString != null) {
 			buildMaze();
 			createBoardGame();
-			//character.setX(0);
-			//character.setY(0);
 			character  = new GameCharacter(0,0);
 			redraw();
 		}
@@ -40,7 +37,6 @@ public class MazeGameBoard extends GameBoard {
 		
 		setLayout(new GridLayout(2, false));									//Layout of Board itself (in side)
 		setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));		//Layout (out Side)
-		//setBackground(new Color(null, 255, 255, 255));
 		setBackgroundImage(mazeBackround);
 		
 		addPaintListener(new PaintListener() {
@@ -54,7 +50,6 @@ public class MazeGameBoard extends GameBoard {
 				int widthI = (int)width;
 				int heightI = (int)height;
 				int end = mazeSize-1;
-
 						if (maze != null) {
 							for (int i = 0; i < mazeSize; i++)
 								for (int j = 0; j < mazeSize; j++) {		
@@ -97,7 +92,6 @@ public class MazeGameBoard extends GameBoard {
 		
 		//stage #2 set the size on the Maze
 		mazeSize = Integer.parseInt(b[0]);
-		//System.out.println("size is: "+mazeSize);  //check
 	}
 	
 	public void setWallsOfMaze(String s) {
@@ -105,29 +99,17 @@ public class MazeGameBoard extends GameBoard {
 		String[] a = s.split(": ");
 		String b = a[1];
 		String[] arrWalls = b.split(" ");
-		//check
-		//System.out.println("walls are:");
-	//	for(int i=0; i<arrWalls.length; i++)
-	//		System.out.print(arrWalls[i]+" ");
-		//System.out.println();
+
 		//stage #2 set the walls on the Maze
 		for(int k=0; k<arrWalls.length; k++) {
 			int row =getRowNumber(arrWalls[k]); 
 			int col =getColumnNumber(arrWalls[k]);
-			//System.out.print("row: "+row +" ");			//for check
-			//System.out.println("col: "+col);			//for check
 			maze[row][col] = 0;
 		}
 		
 	}
 	
 	public void buildMaze() {
-		//MazeGame:Start(0,0) Goal(10,10) Size 11X11 with 30 Walls: (2,4)(5,4)(5,9)(9,5)(9,10)(4,8)(9,4)(7,1)(2,5)
-		//Walls 5(2,3)(3,3)(2,1)(1,3)(3,1)
-		//because of the Maze Levels, we already know: Start, Goal, numOfWalls
-		//the only thing we don't know is the walls indexes
-		//System.out.println("description: "+description);
-		
 		//#1: set size
 		extractSizeOfMaze(mazeString);
 		
@@ -165,18 +147,8 @@ public class MazeGameBoard extends GameBoard {
 		int y = getRowNumber(cordinate);  		//x of the new regular Move
 		int x = getColumnNumber(cordinate);		//y of the new regular Move
 		
-		//System.out.println("x , y = "+ x+" "+y);
-		//System.out.println("CANVAS IS: "+getSize().x+" X "+getSize().y);
-		
 		double width = (getSize().x / mazeSize) - 1;				//(double)
 		double height = getSize().y / mazeSize;
-		
-		//System.out.println("width X height = "+width+" X "+height);
-		
-		//x = x * (int)width;
-		//y = y * (int)height;
-		
-		//System.out.println("NEW === x , y = "+ x+" "+y);
 		
 		character.setX(x * (int)width);
 		character.setY(y * (int)height);

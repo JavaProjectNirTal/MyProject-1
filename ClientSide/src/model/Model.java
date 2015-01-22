@@ -6,7 +6,7 @@ import java.util.Observer;
 import tasks.Task;
 
 /**this Interface represents the Model's Layer of the Project's MVP architecture
- * describes the functuality of every Model type within the Project
+ * describes the functionality of every Model type within the Project
  * @author Nir Meiri, Tal Kramer
  *@version 1.0
  */

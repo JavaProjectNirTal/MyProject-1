@@ -36,10 +36,9 @@ public class PuzzleGameBoard extends GameBoard {
 
 	// #1:
 	private void buildPuzzle() {
-		// EightPuzzle:Start 123456780   *******  125604378
 		String[] a = puzzleString.split(" ");
 		if(a.length > 1)
-			puzzleString = a[1];                          // now the puzzleString   =   125604378
+			puzzleString = a[1];
 		else
 			puzzleString = a[0];
 		char c;

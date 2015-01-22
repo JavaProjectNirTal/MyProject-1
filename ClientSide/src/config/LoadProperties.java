@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class LoadProperties {				//reads the Client's Properties from an XML file
-	private static String FILE_NAME;	// = "resources/Properties.xml";
+	private static String FILE_NAME;
 	
 	public static void setFILE_NAME(String fILE_NAME) {
 		FILE_NAME = fILE_NAME;

@@ -127,29 +127,14 @@ public class EightPuzzleDomain implements SearchDomain {
 		}
 		return s;
 	}
-/*	
-	public String setRandomPuzzleState() {
-		StringBuilder s= new StringBuilder();
-		Random r = new Random();
-		r.nextInt(10);
-		while (s.length()<puzzleStateSize) {								//runs 8 times for 8 number
-			int randomNumber =(int)(Math.random()*puzzleStateSize) + 1;		//will return an integer between 1-9 including
-			char randomChar = (char)('0'+randomNumber);
-			if (s.indexOf(Character.toString(randomChar)) == -1)			//if the  numeric char is not already in s then append it
-				s.append(randomChar);
-		}
-		int setNull = s.indexOf("9");										// the index of '9' in s will tell me where to place my 'N' (NULL)
-		s.setCharAt(setNull, '0');
-		return s.toString();
-	}
-*/
+	
 	public String moveUp(String s) {
 		int indexOfN = s.indexOf('0');
-		if (indexOfN < size)												//if 'N' is at index 0 / 1 / 2 (top row) => you can't move up
+		if (indexOfN < size)												//if '0' is at index 0 / 1 / 2 (top row) => you can't move up
 			return "FAILED";
 		else {
 			char[] chars = s.toCharArray();
-			int newIndexOfN = indexOfN - size;								//if i want to moveUp the State, 'N' has to move to index of N - 3 (one row up)
+			int newIndexOfN = indexOfN - size;								//if i want to moveUp the State, '0' has to move to index of '0' - 3 (one row up)
 			switchChars(chars, indexOfN, newIndexOfN);
 			return new String(chars);
 		}
@@ -157,11 +142,11 @@ public class EightPuzzleDomain implements SearchDomain {
 	
 	public String moveDown(String s) {
 		int indexOfN = s.indexOf('0');
-		if (indexOfN > 2*size-1)											//if 'N' is at index 6 / 7 / 8 (bottom row) => you can't move down
+		if (indexOfN > 2*size-1)											//if '0' is at index 6 / 7 / 8 (bottom row) => you can't move down
 			return "FAILED";
 		else {
 			char[] chars = s.toCharArray();
-			int newIndexOfN = indexOfN + size;								//if i want to moveDown the State, 'N' has to move to index of N + 3 (one row down)
+			int newIndexOfN = indexOfN + size;								//if i want to moveDown the State, '0' has to move to index of '0' + 3 (one row down)
 			switchChars(chars, indexOfN, newIndexOfN);
 			return new String(chars);
 		}
@@ -169,11 +154,11 @@ public class EightPuzzleDomain implements SearchDomain {
 	
 	public String moveRight(String s) {
 		int indexOfN = s.indexOf('0');
-		if ((indexOfN % size) == 2)											//if 'N' is at index 2 / 5 / 8 (right column) => you can't move right
+		if ((indexOfN % size) == 2)											//if '0' is at index 2 / 5 / 8 (right column) => you can't move right
 			return "FAILED";
 		else {
 			char[] chars = s.toCharArray();
-			int newIndexOfN = indexOfN + 1;									//if i want to moveRight the State, 'N' has to move to index of N + 1 (one column right)
+			int newIndexOfN = indexOfN + 1;									//if i want to moveRight the State, '0' has to move to index of '0' + 1 (one column right)
 			switchChars(chars, indexOfN, newIndexOfN);
 			return new String(chars);
 		}
@@ -185,7 +170,7 @@ public class EightPuzzleDomain implements SearchDomain {
 			return "FAILED";
 		else {
 			char[] chars = s.toCharArray();
-			int newIndexOfN = indexOfN - 1;									//if i want to moveLeft the State, 'N' has to move to index of N - 1 (one column left)
+			int newIndexOfN = indexOfN - 1;									//if i want to moveLeft the State, '0' has to move to index of '0' - 1 (one column left)
 			switchChars(chars, indexOfN, newIndexOfN);
 			return new String(chars);
 		}

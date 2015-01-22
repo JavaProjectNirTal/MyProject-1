@@ -9,7 +9,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.MessageBox;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 public class WelcomeWindow extends BasicWindow {
@@ -46,7 +45,6 @@ public class WelcomeWindow extends BasicWindow {
 				String[] filterExt = { "*.xml", "*.*" };		//ext: *.xml , *.*
 				dialog.setFilterExtensions(filterExt);
 				selectedFilePath = dialog.open();
-				//System.out.println("selectedFilePath: "+selectedFilePath);
 				if (selectedFilePath != null) {
 					setChanged();
 					notifyObservers(selectedFilePath);
@@ -60,8 +58,7 @@ public class WelcomeWindow extends BasicWindow {
 			}
 
 			@Override
-			public void widgetDefaultSelected(SelectionEvent arg0) {
-			}
+			public void widgetDefaultSelected(SelectionEvent arg0) {}
 		});
 		
 		//Game #1:
@@ -89,9 +86,7 @@ public class WelcomeWindow extends BasicWindow {
 			}
 			
 			@Override
-			public void widgetDefaultSelected(SelectionEvent arg0) {
-				// TODO Auto-generated method stub
-			}
+			public void widgetDefaultSelected(SelectionEvent arg0) {}
 		});
 		
 		//Game #2:
@@ -119,17 +114,7 @@ public class WelcomeWindow extends BasicWindow {
 			}
 			
 			@Override
-			public void widgetDefaultSelected(SelectionEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void widgetDefaultSelected(SelectionEvent arg0) {}
 		});
 	}
-	
-	
-	
-	
-	
-	
-	
 }

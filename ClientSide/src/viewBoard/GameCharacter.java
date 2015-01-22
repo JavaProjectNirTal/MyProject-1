@@ -2,9 +2,7 @@ package viewBoard;
 
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Display;
 
 class GameCharacter {
 	private int x, y;

@@ -16,7 +16,6 @@ public class Client {
 	private int port;
 	private Socket socket;
 	private boolean ClientIsConnected;
-	//private String domainDescription;
 	
 	public Client() {	//default C'tor => reads properties from the XML file
 		ClientProperties properties = LoadProperties.readProperties();

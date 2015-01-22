@@ -9,8 +9,6 @@ import network.Client;
 /**  MyModel is a type of Observable and the Presenter is the Observer
  *
  * @see {@link Model}
- * 
- *
  */
 
 public class MyModel extends Observable implements Model {
@@ -93,7 +91,7 @@ public class MyModel extends Observable implements Model {
 	 * @param args - A string consist of the GameCharacter's move and current state coordinates
 	 * @return New state coordinates of the GameCharacter
 	 */
-	public String selectMoves(String args) { // the key moves of the player in which move + state:
+	public String selectMoves(String args) {
 		String[] a = args.split(" ");
 		String move = a[0];
 		String description = a[1];
@@ -155,8 +153,8 @@ public class MyModel extends Observable implements Model {
 	}
 	
 	public boolean checkConnection() {
-		Client c = new Client();					//opens temp Client
-		boolean b = c.getClientIsConnected();		//checks if the server is alive
+		Client c = new Client();					//opens a temporary Client
+		boolean b = c.getClientIsConnected();		//checks if the socket connection state
 		return b;
 	}
 

@@ -1,4 +1,7 @@
-/viewNwindow/
-/presenter/
-/network/
+/config/
 /model/
+/network/
+/presenter/
+/tasks/
+/viewBoard/
+/viewNwindow/

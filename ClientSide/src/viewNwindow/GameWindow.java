@@ -1,8 +1,5 @@
 package viewNwindow;
 
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridData;
-
 import viewBoard.GameBoard;
 
 public abstract class GameWindow extends BasicWindow implements View {

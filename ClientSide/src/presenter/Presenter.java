@@ -1,19 +1,15 @@
 package presenter;
 
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import org.eclipse.swt.widgets.Display;
-
-import config.LoadProperties;
-import presenter.UserCommands.Command;
-import viewNwindow.GameWindow;
-import viewNwindow.MyConsoleView;
-import viewNwindow.View;
-import viewNwindow.WelcomeWindow;
 import model.Model;
 import model.MyModel;
+import presenter.UserCommands.Command;
+import viewNwindow.GameWindow;
+import viewNwindow.View;
+import viewNwindow.WelcomeWindow;
+import config.LoadProperties;
 
 public class Presenter implements Observer {
 	//the Observables
@@ -85,8 +81,8 @@ public class Presenter implements Observer {
 				args = arr[1];
 		Command command = commands.selectCommand(commandName);
 		Model m = command.doCommand(this.model, args);
-		//check if we got a new model from the command
-		if (m != this.model) {
+		
+		if (m != this.model) {						//check if we got a new model from the command
 			this.model = m;
 			this.model.addObserver(this); 		//the presenter itself is the Observer
 		}

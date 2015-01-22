@@ -7,7 +7,6 @@ import model.Solution;
 
 public interface View extends Task {
 	void start();
-	void displayCurrentState();
 	void displaySolution(Solution solution);
 	void addObserver(Observer o);	
 	String getUserAction();

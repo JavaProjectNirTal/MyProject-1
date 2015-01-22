@@ -86,8 +86,7 @@ public class PuzzleGameWindow extends GameWindow {
 			}
 
 			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-			}
+			public void widgetDefaultSelected(SelectionEvent e) {}
 		});
 
 		// the Canvas before the Game starts
@@ -97,8 +96,6 @@ public class PuzzleGameWindow extends GameWindow {
 		startGameCanvas.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
 				true, 2, 1));
 		startGameCanvas.moveBelow(btnStart);
-		//startGameCanvas.setBackground(new Color(null, 0, 0, 255));
-		//startGameCanvas.setBackgroundImage(puzzleInstruction);
 		
 		instruction = new Button(shell, SWT.PUSH);
 		instruction.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, true, 2, 1));
@@ -138,10 +135,7 @@ public class PuzzleGameWindow extends GameWindow {
 			}
 
 			@Override
-			public void widgetDefaultSelected(SelectionEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
+			public void widgetDefaultSelected(SelectionEvent arg0) {}
 		});
 
 		// exit Button:
@@ -158,22 +152,13 @@ public class PuzzleGameWindow extends GameWindow {
 			}
 
 			@Override
-			public void widgetDefaultSelected(SelectionEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
+			public void widgetDefaultSelected(SelectionEvent arg0) {}
 		});
 	}
 
 	@Override
 	public void start() {
 		run();
-	}
-
-	@Override
-	public void displayCurrentState() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override

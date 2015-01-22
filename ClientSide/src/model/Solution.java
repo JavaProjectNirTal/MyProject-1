@@ -2,10 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
 import model.algorithm.Action;
-
-
 
 
 public class Solution implements Serializable{
