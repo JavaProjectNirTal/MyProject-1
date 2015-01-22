@@ -9,13 +9,12 @@ import model.domains.SearchDomain;
 
 
 
-//MyModel is a type of Observable and the Presentor is the Observer
+//MyModel is a type of Observable and the Presenter is the Observer
 
 public class MyModel extends Observable implements Model {
 	
 	private SearchDomain domain;
 	private String domainDescription;				//for returning the description to the client
-	//private SearchDomainFactory SDF;
 	private Searcher algorithm;
 	private SearchAlgorithmsFactory SAF;
 	private Solution solution;
@@ -24,7 +23,6 @@ public class MyModel extends Observable implements Model {
 	
 
 	public MyModel() {
-		//this.SDF = new SearchDomainFactory();
 		this.SAF = new SearchAlgorithmsFactory();
 		this.solutionManager = SolutionManager.getInstance();
 	}
