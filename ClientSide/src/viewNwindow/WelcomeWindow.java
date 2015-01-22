@@ -3,7 +3,6 @@ package viewNwindow;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -28,7 +27,7 @@ public class WelcomeWindow extends BasicWindow {
 	@Override
 	void initWidgets() {
 		//setting the Window:
-		shell.setSize(700, 400);
+		shell.setSize(900, 500);
 		shell.setLayout(new GridLayout(2, true));
 		
 		Button xmlLoad = new Button(shell, SWT.PUSH);
@@ -65,7 +64,7 @@ public class WelcomeWindow extends BasicWindow {
 		});
 		
 		//Game #1:
-		Image gameImage1 = new Image(display,"resources/maze.jpg");
+		Image gameImage1 = new Image(display,"resources/maze0.png");
 		Button game1maze = new Button(shell, SWT.PUSH);
 		game1maze.setImage(gameImage1);
 		game1maze.setLayoutData(new GridData(GridData.CENTER, GridData.CENTER, true, true));
@@ -95,7 +94,7 @@ public class WelcomeWindow extends BasicWindow {
 		});
 		
 		//Game #2:
-		Image gameImage2 = new Image(display,"resources/puzzle.jpg");
+		Image gameImage2 = new Image(display,"resources/Puzzle0.png");
 		Button game2puzzle = new Button(shell, SWT.PUSH);
 		game2puzzle.setImage(gameImage2);
 		game2puzzle.setLayoutData(new GridData(GridData.CENTER, GridData.CENTER, true, true));

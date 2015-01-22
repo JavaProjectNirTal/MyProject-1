@@ -41,15 +41,11 @@ public class Presenter implements Observer {
 	}
 	
 	public void findSolutionInAModel(int i) {						//checks if there's a solution for the specific problem at this time point
-		if (!indexInRange(i))
-			((MyConsoleView) view).indexNotInRange(false);
-		else {
 			if ( models.get(i-1).getSolution() == null )				//there's no solution yet
 				((MyConsoleView) view).solutionFoundOrNot(false);
 			else													//case: regular solution or "no solution"
 				view.solutionFoundOrNot(true);
 			}
-	}
 	
 	public void showSolutionInModel(int i) {						//presents the solution to the User
 			if (models.get(i-1).getSolution() != null) {

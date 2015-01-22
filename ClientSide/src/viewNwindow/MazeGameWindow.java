@@ -7,30 +7,25 @@ import model.algorithm.Action;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.MessageBox;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.widgets.Widget;
 
 import viewBoard.GameBoard;
 import viewBoard.MazeGameBoard;
-import viewBoard.PuzzleGameBoard;
 
 public class MazeGameWindow extends GameWindow {
 
 	private Canvas startGameCanvas;
 	private String mazeCharacterState;
+	Button instruction;
+	Image mazeInstruction;
 
 	public MazeGameWindow(int width, int height, String title) {
 		super(width, height, title);
@@ -39,7 +34,9 @@ public class MazeGameWindow extends GameWindow {
 	@Override
 	void initWidgets() { // change!!!!!! without all if!!! use FACTORY
 		// setting the Window:
-		shell.setSize(600, 600);
+		mazeInstruction = new Image(display, "resources/instructionMaze.jpg");
+
+		shell.setSize(750, 750);
 		shell.setLayout(new GridLayout(2, false));
 		
 		Label lblHeadLine = new Label(shell, SWT.CENTER); // headLine
@@ -106,6 +103,7 @@ public class MazeGameWindow extends GameWindow {
 					board.dispose();
 				setBoard(new MazeGameBoard(shell, SWT.DOUBLE_BUFFERED, s));
 				startGameCanvas.dispose();
+				instruction.dispose();
 				board.moveBelow(btnStart);
 				board.setFocus();
 				buildBoard();
@@ -123,8 +121,13 @@ public class MazeGameWindow extends GameWindow {
 		startGameCanvas.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
 				true, 2, 1));
 		startGameCanvas.moveBelow(btnStart);
-		startGameCanvas.setBackground(new Color(null, 0, 0, 255));
-		Text text = new Text(startGameCanvas, SWT.PUSH);
+		//startGameCanvas.setBackground(new Color(null, 0, 0, 255));
+		
+		instruction = new Button(shell, SWT.PUSH);
+		instruction.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, true, 2, 1));
+		instruction.setImage(mazeInstruction);
+		
+		/*Text text = new Text(startGameCanvas, SWT.PUSH);
 		text.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false, 2,
 				1));
 		text.setText("Instructions");
@@ -158,7 +161,7 @@ public class MazeGameWindow extends GameWindow {
 		text3.setSize(200, 200);
 		text3.setFont(new Font(null, "Arial", 17, SWT.BOLD));
 		text3.setForeground(new Color(null, 255, 255, 255));
-		text3.setBackground(new Color(null, 0, 0, 255));
+		text3.setBackground(new Color(null, 0, 0, 255));*/
 
 		// solution Button:
 		Button btnDisplaysolution = new Button(shell, SWT.PUSH);

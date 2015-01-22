@@ -1,15 +1,13 @@
 package viewNwindow;
 
 import model.Solution;
-import model.algorithm.Action;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -18,7 +16,6 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.MessageBox;
-import org.eclipse.swt.widgets.Text;
 
 import viewBoard.GameBoard;
 import viewBoard.PuzzleGameBoard;
@@ -28,7 +25,9 @@ public class PuzzleGameWindow extends GameWindow {
 	Canvas startGameCanvas;
 	String puzzleString;
 	Button btnStart;
-
+	Image puzzleInstruction;
+	Button instruction;
+	
 	public PuzzleGameWindow(int width, int height, String title) {
 		super(width, height, title);
 
@@ -37,7 +36,9 @@ public class PuzzleGameWindow extends GameWindow {
 	@Override
 	void initWidgets() { // change!!!!!! without all if!!! use FACTORY
 		// setting the Window:
-		shell.setSize(600, 600);
+		puzzleInstruction = new Image(display, "resources/insructionPuzzle.jpg");
+		
+		shell.setSize(700, 700);
 		shell.setLayout(new GridLayout(2, false));
 
 		Label lblHeadLine = new Label(shell, SWT.CENTER); // headLine
@@ -80,6 +81,7 @@ public class PuzzleGameWindow extends GameWindow {
 					board.dispose();
 				setBoard(new PuzzleGameBoard(shell, SWT.DOUBLE_BUFFERED, s));
 				startGameCanvas.dispose();
+				instruction.dispose();
 				buildBoard();
 			}
 
@@ -95,8 +97,14 @@ public class PuzzleGameWindow extends GameWindow {
 		startGameCanvas.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
 				true, 2, 1));
 		startGameCanvas.moveBelow(btnStart);
-		startGameCanvas.setBackground(new Color(null, 0, 0, 255));
-		Text text = new Text(startGameCanvas, SWT.PUSH);
+		//startGameCanvas.setBackground(new Color(null, 0, 0, 255));
+		//startGameCanvas.setBackgroundImage(puzzleInstruction);
+		
+		instruction = new Button(shell, SWT.PUSH);
+		instruction.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, true, 2, 1));
+		instruction.setImage(puzzleInstruction);
+		
+		/*Text text = new Text(startGameCanvas, SWT.PUSH);
 		text.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false, 2,
 				1));
 		text.setText("Instructions");
@@ -125,7 +133,7 @@ public class PuzzleGameWindow extends GameWindow {
 		text3.setSize(200, 200);
 		text3.setFont(new Font(null, "Arial", 17, SWT.BOLD));
 		text3.setForeground(new Color(null, 255, 255, 255));
-		text3.setBackground(new Color(null, 0, 0, 255));
+		text3.setBackground(new Color(null, 0, 0, 255));*/
 
 		// solution Button:
 		Button btnDisplaysolution = new Button(shell, SWT.PUSH);
@@ -246,7 +254,7 @@ public class PuzzleGameWindow extends GameWindow {
 
 	public void updatePuzzle() {
 		board.dispose();
-		setBoard(new PuzzleGameBoard(shell, SWT.BORDER, this.getDescription()));
+		setBoard(new PuzzleGameBoard(shell, SWT.DOUBLE_BUFFERED, getDescription()));
 		buildBoard();
 		if(this.getDescription().equals("123456780")){
 			MessageBox messageBox = new MessageBox(shell, SWT.ICON_INFORMATION);

@@ -65,15 +65,15 @@ public class PuzzleGameBoard extends GameBoard {
 
 		ImageToInt = new HashMap<Integer, Image>();
 
-		ImageToInt.put(1, pic0);
-		ImageToInt.put(2, pic1);
-		ImageToInt.put(3, pic2);
-		ImageToInt.put(4, pic3);
-		ImageToInt.put(5, pic4);
-		ImageToInt.put(6, pic5);
-		ImageToInt.put(7, pic6);
-		ImageToInt.put(8, pic7);
-		ImageToInt.put(0, pic8);
+		ImageToInt.put(0, pic0);
+		ImageToInt.put(1, pic1);
+		ImageToInt.put(2, pic2);
+		ImageToInt.put(3, pic3);
+		ImageToInt.put(4, pic4);
+		ImageToInt.put(5, pic5);
+		ImageToInt.put(6, pic6);
+		ImageToInt.put(7, pic7);
+		ImageToInt.put(8, pic8);
 	}
 
 	@Override
