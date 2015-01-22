@@ -1,6 +1,5 @@
 package model.domains;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -9,6 +8,10 @@ import model.algorithm.State;
 
 public class MazeGameDomain implements SearchDomain {
 
+	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 3896009278010278257L;
 	private int	size;
 	private MazeGameState start,goal;

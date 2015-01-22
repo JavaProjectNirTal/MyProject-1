@@ -42,17 +42,6 @@ public class MyModel extends Observable implements Model {
 		this.domain = domain;
 	}
 	
-/*
-	@Override
-	public void selectDomain(String args) {							
-		String[] arr = args.split("-");
-		String domainName = arr[0];									//Type Of Game
-		String domainArgs = "";
-		if(arr.length > 1)
-			domainArgs = arr[1];								//Parameters, start, goal, etc..
-		this.domain = SDF.createSearchDomain(domainName, domainArgs);
-	}*/
-
 	@Override
 	public void selectAlgorithm(String algorithmName) {
 		this.algorithm = SAF.createSearcherAlgorithm(algorithmName);

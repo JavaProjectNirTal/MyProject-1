@@ -10,7 +10,6 @@ public class Problem implements Serializable {
 	private static final long serialVersionUID = -6725296077670399438L;
 	private SearchDomain domain;
 	private String algorithmName;
-	//private String domainDescription;
 	
 	public SearchDomain getDomain() {
 		return domain;
@@ -28,11 +27,4 @@ public class Problem implements Serializable {
 	public String getDescription() {
 		return domain.getDomainDescription();
 	}
-	
-	//public String getDomainDescription() {
-	//	return domainDescription;
-	//}
-	//public void setDomainDescription(String domainDescription) {
-	//	this.domainDescription = domainDescription;
-	//}
 }

@@ -54,10 +54,8 @@ public class BFS extends CommonSearcher {		//Algorithm #2 BFS
 								s.setfScore(newPathPrice);
 								openSet.add(s);
 						}	
-							
 					}
-				}
-					
+				}	
 			}
 		}	
 		return null;

@@ -34,8 +34,6 @@ public class MyClientHandler implements ClientHandler {
 			model.solveDomain();											//searching for a solution
 			Solution solution = model.getSolution();						//Retrieving the Solution
 			out.writeObject(solution);										//sending it back to the Client
-			//String domainDescription = ((MyModel)model).getDomainDescription();		//reads the domainDescription from the model
-			//out.writeObject(domainDescription);								//sending it back to the Client
 		} catch (ClassNotFoundException | IOException e) {
 		}
 		finally {

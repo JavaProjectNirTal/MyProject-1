@@ -4,11 +4,8 @@ import model.algorithm.State;
 
 public class MazeGameState extends State {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -87169417029040427L;
 	//tells you if the State is a Wall or not
+	private static final long serialVersionUID = -87169417029040427L;
 	private boolean possibleToPass;				//True => possibleToPass, False =>notPossibleToPass
 	
 	public MazeGameState() {}
