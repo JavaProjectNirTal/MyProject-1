@@ -23,7 +23,14 @@ public class Client {
 		this.serverAddress = properties.getIp();
 		socket = null;
 	}
-	
+	/**
+	 * Sets a new Client socket, establishing connection with a server.
+	 * Sets the Client's Input and Output Streams and sends the Problem to the Server and requesting a Solution
+	 * @param problem of this model
+	 * @return Solution for this Problem
+	 * @exception ClassNotFoundException Class of a serialized object cannot be found
+	 * @exception IOException Any of the usual Input/Output related exceptions
+	 */
 	public Solution getSolution(Problem problem) {
 		ObjectInputStream in = null;
 		ObjectOutputStream out = null;
@@ -49,7 +56,9 @@ public class Client {
 		}			
 		return null;		//Failed
 	}
-	
+	/**
+	 * Stops the Client's connection by closing the socket
+	 */
 	public void stopClient()
 	{
 		try {

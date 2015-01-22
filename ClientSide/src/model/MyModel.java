@@ -57,6 +57,7 @@ public class MyModel extends Observable implements Model {
 		solution = client.getSolution(problem);
 	}
 	
+	@Override
 	public void modelToObserver(String args) {
 		this.setChanged();
 		this.notifyObservers(args);
@@ -86,9 +87,13 @@ public class MyModel extends Observable implements Model {
 	public void stopThread() {
 		client.stopClient();
 	}
-
-	public String selectMoves(String args) { // the key moves of the player in
-		//which move + state:
+	
+	/**
+	 * Get's the GameCharacter's move and current state coordinates and sets this new move coordinates
+	 * @param args - A string consist of the GameCharacter's move and current state coordinates
+	 * @return New state coordinates of the GameCharacter
+	 */
+	public String selectMoves(String args) { // the key moves of the player in which move + state:
 		String[] a = args.split(" ");
 		String move = a[0];
 		String description = a[1];
@@ -141,6 +146,10 @@ public class MyModel extends Observable implements Model {
 		return description;	
 	}
 
+	/**
+	 * Get's the domain description of this model
+	 * @return this model's domain description
+	 */
 	public String getDomainDescription() {
 		return domainDescription;
 	}

@@ -7,6 +7,7 @@ import model.algorithm.Action;
 
 public class Solution implements Serializable{
 	
+	private static final long serialVersionUID = -1273366738930484533L;
 	private String problemDescription;
 	private ArrayList<Action> actions;
 	
