@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import org.eclipse.swt.widgets.Display;
+
 import config.LoadProperties;
 import presenter.UserCommands.Command;
 import viewNwindow.GameWindow;
@@ -15,74 +17,52 @@ import model.MyModel;
 
 public class Presenter implements Observer {
 	//the Observables
-	private Model model;
-	private View view;					//a view window
+	private Model model;				//Model
+	private View view;					//a Gui Window = View
 	private WelcomeWindow w;			//welcomeWindow
-	private ArrayList<Model> models;	//all running models
-	private static Thread t;			//for the View
 	private UserCommands commands;		//the Factory of Commands
 
 	public Presenter(Model model, WelcomeWindow w) {
 		this.model = model;
 		this.w = w;
 		this.commands = new UserCommands();
-		this.models = new ArrayList<Model>();
 	}
 	
 	public void setView(View view) {
 		this.view = view;
 		this.view.addObserver(this);
 	}
-	
-	public  boolean indexInRange(int index) {
-		if (index>0 && index<=this.models.size())		//the index is valid
-			return true;
-		return false;
-	}
-	
-	public void findSolutionInAModel(int i) {						//checks if there's a solution for the specific problem at this time point
-			if ( models.get(i-1).getSolution() == null )				//there's no solution yet
-				((MyConsoleView) view).solutionFoundOrNot(false);
-			else													//case: regular solution or "no solution"
-				view.solutionFoundOrNot(true);
-			}
-	
+
 	public void showSolutionInModel(int i) {						//presents the solution to the User
-			if (models.get(i-1).getSolution() != null) {
-				view.displaySolution(models.get(i-1).getSolution());
-			}
-			else {
+			if (model.getSolution() != null)
+				view.displaySolution(model.getSolution());
+			else
 				view.solutionFoundOrNot(false);
-				
-			}
 	}
 	
 	public void exitSafetlyFromAllModels() {
-		if (models != null) {
-			for(int i=0; i<models.size(); i++)
-				if(models.get(i).getT() != null && models.get(i).getT().isAlive())
-					models.get(i).stopThread();
-		}
+		if (model.getT() != null)
+			model.stopThread();
 	}
 	
 	public void fromModel(Object arg1) {
 		if (arg1 != null) {											
-			if ( ((String)arg1).startsWith("isThereASolution") ) {					//option 1
-				String s = ((String)arg1).substring(((String)arg1).length()-1);
-				int index = Integer.parseInt(s);
-				findSolutionInAModel(index); }
-			else if ( ((String)arg1).startsWith("presentSolution") ) {				//op2
+			if ( ((String)arg1).startsWith("presentSolution") ) {					//op1
 				String s = ((String)arg1).substring(((String)arg1).length()-1);
 				int index = Integer.parseInt(s);
 				showSolutionInModel(index); }
-			else if ( ((String)arg1).equals("safeExit") )							//op3
+			else if ( ((String)arg1).equals("safeExit") )							//op2
 				exitSafetlyFromAllModels();
-			else if ( ((String)arg1).startsWith("afterMoves") ) {					//op4
+			else if ( ((String)arg1).startsWith("Server") ) {
+				boolean b = ((MyModel)model).checkConnection();
+				((GameWindow)view).setPossibleToConnect(b);
+			}
+			else if ( ((String)arg1).startsWith("afterMoves") ) {					//op3
 				String[] a = ((String)arg1).split(" ");
 				sendDescription(a[1]);
 			}
 			else
-				 sendDescription(null);									//op5- getDescription
+				 sendDescription(null);									//op4- getDescription
 		}
 	}
 	
@@ -108,11 +88,8 @@ public class Presenter implements Observer {
 		//check if we got a new model from the command
 		if (m != this.model) {
 			this.model = m;
-			models.add(m);
 			this.model.addObserver(this); 		//the presenter itself is the Observer
 		}
-		if(models != null)
-			System.out.println("number of models in models arr is: "+models.size());
 	}
 	
 	@Override

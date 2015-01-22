@@ -153,5 +153,11 @@ public class MyModel extends Observable implements Model {
 	public String getDomainDescription() {
 		return domainDescription;
 	}
+	
+	public boolean checkConnection() {
+		Client c = new Client();					//opens temp Client
+		boolean b = c.getClientIsConnected();		//checks if the server is alive
+		return b;
+	}
 
 }

@@ -9,6 +9,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 public class WelcomeWindow extends BasicWindow {
@@ -41,7 +42,7 @@ public class WelcomeWindow extends BasicWindow {
 				// open a file dialog
 				FileDialog dialog = new FileDialog(shell, SWT.OPEN);
 				dialog.setText("open");
-				dialog.setFilterPath("resources");				//default path is resources
+				dialog.setFilterPath("resources/");				//default path is resources
 				String[] filterExt = { "*.xml", "*.*" };		//ext: *.xml , *.*
 				dialog.setFilterExtensions(filterExt);
 				selectedFilePath = dialog.open();

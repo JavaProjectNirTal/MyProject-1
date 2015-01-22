@@ -41,8 +41,10 @@ public class MyClientHandler implements ClientHandler {
 		finally {
 			try {
 				if (!clientSocket.isClosed()) {
-					out.close();
-					in.close();
+					if (out != null)
+						out.close();
+					if(in != null)
+						in.close();
 					clientSocket.close();
 				}
 			} catch (IOException e) {}

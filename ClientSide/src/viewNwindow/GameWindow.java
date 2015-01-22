@@ -11,9 +11,10 @@ public abstract class GameWindow extends BasicWindow implements View {
 	private String gameDescription;
 	protected GameBoard board;		//canvas
 	private static volatile boolean solutionRecivied = false;
+	private boolean possibleToConnect;
 	
 	public GameWindow(int width, int height, String title) {
-		super(width, height, title);	
+		super(width, height, title);
 	}
 	
 	public GameBoard getBoard() {
@@ -42,6 +43,12 @@ public abstract class GameWindow extends BasicWindow implements View {
 	public static void setSolutionRecivied(boolean solutionRecivied) {
 		GameWindow.solutionRecivied = solutionRecivied;
 	}
-	
-	
+
+	public boolean getPossibleToConnect() {
+		return possibleToConnect;
+	}
+
+	public void setPossibleToConnect(boolean possibleToConnect) {
+		this.possibleToConnect = possibleToConnect;
+	}
 }

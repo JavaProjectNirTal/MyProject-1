@@ -13,7 +13,9 @@ public abstract class BasicWindow extends Observable implements Runnable {
 	protected Shell shell;
 	
 	public BasicWindow(int width, int height, String title) {		// 1. creates the Window
-		display = new Display();									//sets the Display of the Program
+		display = Display.getCurrent();								//sets the Display of the Program
+		if (display == null)
+			display = new Display();
 		shell = new Shell(display);									//the Window itself
 		shell.setSize(width, height);
 		shell.setText(title);

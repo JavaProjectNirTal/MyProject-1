@@ -14,12 +14,11 @@ public class UserCommands {
 		commands.put("selectDomain", new SelectDomainCommand());
 		commands.put("selectAlgorithm", new SelectAlgorithmCommand());
 		commands.put("solveDomain", new SolveDomainCommand());
-		commands.put("isThereASolution", new IsThereASolutionCommand());
 		commands.put("presentSolution", new PresentSolutionCommand());
 		commands.put("exit", new ExitCommand());
 		commands.put("getDescription", new getDescriptionCommand());
-		commands.put("selectMoves",new SelectMoves());
-
+		commands.put("selectMoves",new SelectMovesCommand());
+		commands.put("CheckConnection",new CheckConnectionCommand());
 	}
 	
 	public Command selectCommand(String commandName) {
@@ -56,15 +55,7 @@ public class UserCommands {
 			return model;
 		}
 	}
-	
-	private class IsThereASolutionCommand implements Command {
-		@Override
-		public Model doCommand(Model model, String args) {
-			model.modelToObserver("isThereASolution "+args);
-			return model;
-		}
-	}
-	
+
 	private class PresentSolutionCommand implements Command {
 		@Override
 		public Model doCommand(Model model, String args) {
@@ -88,13 +79,20 @@ public class UserCommands {
 			return model;
 		}
 	}
-	private class SelectMoves implements Command{
+	private class SelectMovesCommand implements Command{
 		@Override
 		public Model doCommand(Model model, String args) {
 			String description = ((MyModel)model).selectMoves(args);
 			model.modelToObserver("afterMoves "+description);
 			return model;
-		}
-		
+		}	
+	}
+	
+	private class CheckConnectionCommand implements Command{
+		@Override
+		public Model doCommand(Model model, String args) {
+			model.modelToObserver("Server");
+		return model;
+		}	
 	}
 }

@@ -15,6 +15,7 @@ public class Client {
 	private String serverAddress;
 	private int port;
 	private Socket socket;
+	private boolean ClientIsConnected;
 	//private String domainDescription;
 	
 	public Client() {	//default C'tor => reads properties from the XML file
@@ -22,6 +23,21 @@ public class Client {
 		this.port = properties.getServerPort();
 		this.serverAddress = properties.getIp();
 		socket = null;
+		ClientIsConnected = connection();
+	}
+	
+	public boolean connection() {
+		try {
+			socket = new Socket(serverAddress, port);				//connecting to server
+			
+		} catch (IOException e) {}
+		if (socket != null)
+			return true;
+		return false;
+	}
+	
+	public boolean getClientIsConnected() {
+		return ClientIsConnected;
 	}
 	/**
 	 * Sets a new Client socket, establishing connection with a server.
@@ -32,19 +48,21 @@ public class Client {
 	 * @exception IOException Any of the usual Input/Output related exceptions
 	 */
 	public Solution getSolution(Problem problem) {
-		ObjectInputStream in = null;
-		ObjectOutputStream out = null;
-		try {
-			socket = new Socket(serverAddress, port);					//connecting to server
-			out = new ObjectOutputStream(socket.getOutputStream());
-			in = new ObjectInputStream(socket.getInputStream());
-			out.writeObject(problem);									//Request to solve this specific Problem
-			Solution solution = (Solution)in.readObject();			//getting the server's answer (Solution)
-			return solution;
-		} catch (ClassNotFoundException | IOException e) {
-			System.out.println("Server has been disconnected");
-			e.printStackTrace();
-		} finally {
+
+		if (ClientIsConnected) {
+
+			ObjectInputStream in = null;
+			ObjectOutputStream out = null;
+			try {
+				out = new ObjectOutputStream(socket.getOutputStream());
+				in = new ObjectInputStream(socket.getInputStream());
+				out.writeObject(problem); // Request to solve this specific Problem
+				Solution solution = (Solution) in.readObject(); // getting the server's answer (Solution)
+				return solution;
+			} catch (ClassNotFoundException | IOException e) {
+				System.out.println("Server is disconnected");
+				e.printStackTrace();
+			} finally {
 				try {
 					if (out != null && in != null) {
 						out.close();
@@ -52,9 +70,11 @@ public class Client {
 					}
 					if (socket != null && !socket.isClosed())
 						socket.close();
-				} catch (IOException e) {}
-		}			
-		return null;		//Failed
+				} catch (IOException e) {
+				}
+			}
+		}
+		return null; // Failed
 	}
 	/**
 	 * Stops the Client's connection by closing the socket
@@ -62,9 +82,9 @@ public class Client {
 	public void stopClient()
 	{
 		try {
-			socket.close();
+			if (socket != null && !socket.isClosed())
+				socket.close();
 		} catch (IOException e) {
-			System.out.println("Exiting Safetly");
 		}
 	}
 }

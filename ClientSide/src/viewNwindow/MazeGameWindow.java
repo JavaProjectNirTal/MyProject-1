@@ -16,6 +16,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 
 import viewBoard.GameBoard;
 import viewBoard.MazeGameBoard;
@@ -98,7 +99,6 @@ public class MazeGameWindow extends GameWindow {
 
 				setCommandChange("getDescription");
 				String s = getDescription();
-				
 				if (board != null)
 					board.dispose();
 				setBoard(new MazeGameBoard(shell, SWT.DOUBLE_BUFFERED, s));
@@ -127,60 +127,35 @@ public class MazeGameWindow extends GameWindow {
 		instruction.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, true, 2, 1));
 		instruction.setImage(mazeInstruction);
 		
-		/*Text text = new Text(startGameCanvas, SWT.PUSH);
-		text.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false, 2,
-				1));
-		text.setText("Instructions");
-		text.setSize(200, 200);
-		text.setFont(new Font(null, "Arial", 20, SWT.BOLD));
-		text.setForeground(new Color(null, 255, 255, 255));
-		text.setBackground(new Color(null, 0, 0, 255));
-
-		Text text1 = new Text(startGameCanvas, SWT.PUSH);
-		text1.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false,
-				2, 1));
-		text1.setText("1: Choose A Game Level");
-		text1.setSize(200, 200);
-		text1.setFont(new Font(null, "Arial", 17, SWT.BOLD));
-		text1.setForeground(new Color(null, 255, 255, 255));
-		text1.setBackground(new Color(null, 0, 0, 255));
-
-		Text text2 = new Text(startGameCanvas, SWT.PUSH);
-		text2.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false,
-				2, 1));
-		text2.setText("2: Choose A Game Algorithm");
-		text2.setSize(200, 200);
-		text2.setFont(new Font(null, "Arial", 17, SWT.BOLD));
-		text2.setForeground(new Color(null, 255, 255, 255));
-		text2.setBackground(new Color(null, 0, 0, 255));
-
-		Text text3 = new Text(startGameCanvas, SWT.PUSH);
-		text3.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false,
-				2, 1));
-		text3.setText("3: Click On The Start Game Button");
-		text3.setSize(200, 200);
-		text3.setFont(new Font(null, "Arial", 17, SWT.BOLD));
-		text3.setForeground(new Color(null, 255, 255, 255));
-		text3.setBackground(new Color(null, 0, 0, 255));*/
-
 		// solution Button:
 		Button btnDisplaysolution = new Button(shell, SWT.PUSH);
-		btnDisplaysolution.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER,
-				true, false, 2, 1));
+		btnDisplaysolution.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false, 2, 1));
 		btnDisplaysolution.setText("Display Solution");
 		btnDisplaysolution.addSelectionListener(new SelectionListener() {
 
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
+				
+				//***checking server connection
+				setCommandChange("CheckConnection");
+				
+				if (getPossibleToConnect() == false) {
+					MessageBox messageBox = new MessageBox(shell, SWT.ERROR);
+					messageBox.setMessage("Server is down, connect to get a Solution");
+					messageBox.open();
+					board.setFocus();
+				}
+				else
+				{
 				setCommandChange("solveDomain");
 				while (getSolutionRecivied() == false) {
 					try {
-						Thread.sleep(500);
+						Thread.sleep(1000);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					setCommandChange("presentSolution: 1");
+				}
 				}
 			}
 
@@ -211,7 +186,6 @@ public class MazeGameWindow extends GameWindow {
 			}
 		});
 	}
-
 	
 	public void buildBoard() {
 			board.addKeyListener(new KeyListener() {
